@@ -1,70 +1,162 @@
-# Getting Started with Create React App
+# Event Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack event management application featuring a React frontend and Rust backend, providing comprehensive event organization and user management capabilities.
 
-## Available Scripts
+## 🌟 Overview
 
-In the project directory, you can run:
+This Event Management System consists of two main components:
+- A React-based frontend for user interface and interactions
+- A Rust-powered backend service with PostgreSQL database and Google Calendar integration
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Authentication
+- User login and registration
+- Secure session management
+- Role-based access control (Admin/User)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Event Management
+- Event creation and registration
+- View current, past, and future events
+- Event editing and deletion
+- Google Calendar synchronization
+- Event notifications system
 
-### `npm test`
+### User Management
+- User registration and profile management
+- Administrative user controls
+- Secure user data handling
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠 Technical Stack
 
-### `npm run build`
+### Frontend
+- React.js
+- React Router for navigation
+- Modern CSS with responsive design
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Backend
+- Actix-web framework (Rust)
+- PostgreSQL with SQLx
+- Google Calendar API integration
+- CORS-enabled security
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📋 Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js (v14.0.0 or higher)
+- Rust (latest stable version)
+- PostgreSQL
+- npm or yarn package manager
+- Google Calendar API credentials
 
-### `npm run eject`
+## 🚀 Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Environment Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Create a `.env` file in the backend directory:
+```env
+DATABASE_URL=postgresql://[user]:[password]@[host]:[port]/[database]
+BACKEND_PORT=8080
+FRONTEND_PORT=3000
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. Create a `.env` file in the frontend directory:
+```env
+REACT_APP_BACKEND_URL=http://localhost:8080
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Frontend Setup
 
-## Learn More
+1. Navigate to the frontend directory:
+```bash
+cd frontend
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Install dependencies:
+```bash
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Start the development server:
+```bash
+npm start
+```
 
-### Code Splitting
+The frontend will be available at `http://localhost:3000`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Backend Setup
 
-### Analyzing the Bundle Size
+1. Navigate to the backend directory:
+```bash
+cd backend
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Build and run the server:
+```bash
+cargo run
+```
 
-### Making a Progressive Web App
+The backend API will be available at `http://localhost:8080`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🛣 Available Routes
 
-### Advanced Configuration
+### Frontend Routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### Authentication
+- `/auth/login` - User login
+- `/auth/signup` - New user registration
+- `/auth/dashboard` - User dashboard
 
-### Deployment
+#### Event Management
+- `/events/dashboard` - Event overview
+- `/events/add` - Create new event
+- `/events/list` - View all events
+- `/events/past` - View past events
+- `/events/current` - View current events
+- `/events/future` - View upcoming events
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Backend API Endpoints
 
-### `npm run build` fails to minify
+#### Authentication
+- `POST /auth/login` - User login
+- `POST /auth/signup` - User registration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Event Management
+- `POST /events/add` - Create new event
+- `PUT /events/edit/{id}` - Update event
+- `GET /events/list` - List all events
+- `DELETE /events/{id}` - Delete event
+- `POST /events/sync_google_calendar/{user_id}` - Sync with Google Calendar
+
+## 🔒 Security Features
+
+- Secure authentication system
+- Protected routes
+- Input validation
+- CORS protection
+- Secure data transmission
+
+## 🧪 Testing
+
+### Frontend Testing
+```bash
+npm test
+```
+
+### Backend Testing
+```bash
+cargo test
+```
+
+## 📦 Building for Production
+
+### Frontend Build
+```bash
+npm run build
+```
+This creates an optimized production build in the `build` folder.
+
+### Backend Build
+```bash
+cargo build --release
+```
+This creates a release build in the `target/release` folder.
